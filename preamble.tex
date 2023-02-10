@@ -22,6 +22,7 @@
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage{chngcntr}
+\usepackage{float}
 
 
 % \input xypic (for commutative diagrams)
@@ -61,7 +62,7 @@
 
 % Cleaner figures
 \newcommand{\fig}[3][0.4]{
-  \begin{figure}[h]
+  \begin{figure}[H]
     \centering
     \includegraphics[width=#1\textwidth, keepaspectratio]{#2}
     \caption{#3}
