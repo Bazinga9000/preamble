@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm}
+\usepackage{xcolor}
+\usepackage[
+    top=10mm,
+    bottom=10mm,
+    left=10mm,
+    right=10mm,
+    marginparwidth=0mm,
+    marginparsep=0mm,
+    headheight=15pt,
+    centering,
+    % showframe,
+    includefoot,
+    includehead
+]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{framed}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{chngcntr}
+
+
+% \input xypic (for commutative diagrams)
+% \include{mssymb}
+
+\def\A{{\mathbb A}}
+\def\P{{\mathbb P}}
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\Q{{\mathbb Q}}
+\def\R{{\mathbb R}}
+\def\C{{\mathbb C}}
+\def\F{{\mathbb F}}
+\def\O{{\cal O}}
+\let\sec\S
+\let\S\relax
+\def\S{{\mathfrak S}}
+\def\g{{\mathfrak g}}
+\def\p{{\mathfrak p}}
+\def\h{{\mathfrak h}}
+\def\n{{\mathfrak n}}
+\def\v{{\mathfrak v}}
+\def\m{{\mathfrak m}}
+\def\a{{\alpha}}
+
+
+\newcommand{\skipline}{\vspace{\baselineskip}}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\noin}{\noindent}
+
+
+% remove all paragraph indents
+\setlength{\parindent}{0pt}
+
+% Figure counter include section
+\counterwithin{figure}{section}
+
+% Cleaner figures
+\newcommand{\fig}[3][0.4]{
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=#1\textwidth, keepaspectratio]{#2}
+    \caption{#3}
+  \end{figure}
+}
+% Mathematical notation
+
+
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\nullity}{\mathrm{nullity}}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\gequ}{\geqslant}
+\newcommand{\lequ}{\leqslant}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Coker}{\mathrm{Coker}}
+\newcommand{\Row}{\mathrm{Row}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\Id}{\mathrm{Id}}
+% \newcommand{\mod}{\mathrm{mod }}
+\newcommand{\un}{\underline}
+\newcommand{\ov}{\overline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\pr}{\prime}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\im}{\mathrm{Im}}
+
+% Linear Algebra
+
+\newcommand{\lind}{linearly independent}
+\newcommand{\ldep}{linearly dependent}
+\renewcommand{\vec}[1]{
+  {\bf #1}
+}
+\newcommand{\lincomb}[3]{
+  #1_{1}#2_{1} + #1_{2}#2_{2} + \cdots + #1_{#3}#2_{#3}
+}
+\newcommand{\neglincomb}[3]{
+  -#1_{1}#2_{1} - #1_{2}#2_{2} - \cdots - #1_{#3}#2_{#3}
+}
+\newcommand{\constants}[2]{
+  #1_{1}, #1_{2}, \cdots, #1_{#2}
+}
+\newcommand{\constantsz}[2]{
+  #1_{0}, \constants{#1}{#2}
+}
+
+% Analysis
+\newcommand{\limfty}[1]{\lim_{#1 \to \infty}}
+\newcommand{\seq}[2]{\{#1_{#2}\}_{#2 \in \N}}
+\newcommand{\sseq}[3]{\{#1_{#2_{#3}}\}_{#3 \in \N}}
+\newcommand{\chep}{Let $\epsilon > 0$}
+
+% Category Theory
+\newcommand{\cat}{\mathcal{C}}
+\newcommand{\catD}{\mathcal{D}}
+\newcommand{\functF}{\mathcal{F}}
+\newcommand{\functG}{\mathcal{G}}
+\newcommand{\functI}{\mathcal{I}}
+\newcommand{\functU}{\mathcal{U}}
+
+\newcommand{\op}[1]{#1^{\mathrm{op}}}
+
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Grp}{\mathbf{Grp}}
+\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\cRing}{\mathbf{cRing}}
+\newcommand{\BanAnaMan}{\mathbf{BanAnaMan}}
+\newcommand{\FinSet}{\mathbf{FinSet}}
+\newcommand{\Vect}{\mathbf{Vect}}
+\newcommand{\Cat2}{\mathbf{2}}
+
+
+% ================= %
+% Headers & Footers
+% ================= %
+\pagestyle{fancy}
+\fancyhf{}
+\newcommand{\intros}[3]{
+  \lhead{\textbf{#1} {#2}}
+  \rhead{#3}}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+% ================= %
+%       Utils
+% ================= %
+\newcommand{\induction}[3]{
+  \textbf{Base Case} #1 \\
+  \textbf{Inductive Hypothesis} \\ #2 \\
+  \textbf{Inductive Step} \\ #3
+}
+
+
+
+% Used to list all problems on homework
+\newcommand{\problems}[1]{
+  \medskip \noin
+  {\bf Problems}
+
+  #1
+
+  \medskip{}
+}
+
+
+% augmented matrices
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% ================= %
+%      Box Meta
+% ================= %
+
+% #2 - FG Color
+% #3 - BG Color
+\newenvironment{fancyleftbar}[3][\hsize]
+{%
+    \def\FrameCommand
+    {%
+        {\color{#2}\vrule width 3pt}%
+        \hspace{0pt}%must no space.
+        \fboxsep=\FrameSep\colorbox{#3}%
+    }%
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+}
+{\endMakeFramed}
+
+% Used to allow the color argument to pass through the environment%
+\newsavebox{\boxqed} 
+
+% #1 - Header
+% #2 - FG Color
+% #3 - BG Color
+\newenvironment{fancybox}[3]{
+  \sbox\boxqed{\textcolor{#2}{$\blacksquare$}}
+  \begin{fancyleftbar}{#2}{#3}
+
+  \noin
+  {\large \sc #1} \\
+}
+{
+
+  \medskip
+  \noin
+  \usebox\boxqed
+
+  \end{fancyleftbar}
+}
+
+% #1 - Text header
+% #2 - Outer Text
+% #3 - Inner Text
+% #4 - Inner Header
+% #5 - FG Color
+% #6 - Background Color
+\newcommand{\boxmeta}[6]{
+  \bigskip \bigskip \noin
+  {\large\sc #1}
+
+  \smallskip\noin
+  #2
+
+  \begin{fancybox}{#4}{#5}{#6}
+    \noin
+    #3
+  \end{fancybox}
+}
+
+% #1 - Title
+% #2 - FG Color
+% #3 - BG Color
+% #4 - Inner Text
+\newcommand{\baronly}[4]{
+  \begin{fancyleftbar}{#2}{#3}{\large \sc #1}
+
+    #4
+  \end{fancyleftbar}
+}
+
+% ================= %
+%     Box Colors
+% ================= %
+
+\definecolor{theorem_fg}{HTML}{EABAC3}
+\definecolor{theorem_bg}{HTML}{F9EEF0}
+
+\definecolor{problem_fg}{HTML}{ABABAB}
+\definecolor{problem_bg}{HTML}{EDEDED}
+
+\definecolor{lemma_fg}{HTML}{D0C97D}
+\definecolor{lemma_bg}{HTML}{FCF9DB}
+
+\definecolor{prop_fg}{HTML}{7DDB89}
+\definecolor{prop_bg}{HTML}{D7FADB}
+
+\definecolor{defn_fg}{HTML}{83D4CF}
+\definecolor{defn_bg}{HTML}{E7FCFB}
+
+% ================= %
+%     Box Meso
+% ================= %
+
+\newcommand{\theorem}[2]{
+  \boxmeta{Theorem}{#1}{#2}{Proof}{theorem_fg}{theorem_bg}
+}
+
+\newcommand{\namedtheorem}[3]{
+  \boxmeta{#1}{#2}{#3}{Proof}{theorem_fg}{theorem_bg}
+}
+
+\newcommand{\prob}[3]{
+  \boxmeta{Problem #1}{#2}{#3}{Solution}{problem_fg}{problem_bg}
+}
+
+\newcommand{\exampleprob}[2]{
+  \boxmeta{Example}{#1}{#2}{Solution}{problem_fg}{problem_bg}
+}
+
+\newcommand{\lemma}[2]{
+  \boxmeta{Lemma}{#1}{#2}{Proof}{lemma_fg}{lemma_bg}
+}
+
+\newcommand{\namedlemma}[3]{
+  \boxmeta{#1}{#2}{#3}{Proof}{lemma_fg}{lemma_bg}
+}
+
+\newcommand{\corr}[2]{
+  \boxmeta{Corrolary}{#1}{#2}{Proof}{lemma_fg}{lemma_bg}
+}
+
+\newcommand{\proposition}[2]{
+  \boxmeta{Proposition}{#1}{#2}{Proof}{prop_fg}{prop_bg}
+}
+
+\newcommand{\definition}[1]{
+  \baronly{Definition}{defn_fg}{defn_bg}{#1}
+}
+
+\newcommand{\example}[1]{
+  \baronly{Example}{problem_fg}{problem_bg}{#1}
+}
+
+\newcommand{\remark}[1]{
+  \baronly{Remark}{problem_fg}{problem_bg}{#1}
+}
